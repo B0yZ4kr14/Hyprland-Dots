@@ -37,13 +37,13 @@ CACHE_TTL_SECONDS = int(os.getenv("WEATHER_CACHE_TTL", "600"))  # default 10 min
 UNITS = os.getenv("WEATHER_UNITS", "metric").strip().lower()  # metric|imperial
 
 # Optional manual coordinates
-ENV_LAT = os.getenv("WEATHER_LAT")
-ENV_LON = os.getenv("WEATHER_LON")
+ENV_LAT = os.getenv("WEATHER_LAT", "-16.7289")
+ENV_LON = os.getenv("WEATHER_LON", "-43.8619")
 # Optional manual place override for tooltip
-ENV_PLACE = os.getenv("WEATHER_PLACE")
+ENV_PLACE = os.getenv("WEATHER_PLACE", "Montes Claros, MG, Brazil")
 # Manual place name set inside this file. If set (non-empty), this takes top priority.
 # Example: MANUAL_PLACE = "Concord, NH, US"
-MANUAL_PLACE: Optional[str] = None
+MANUAL_PLACE: Optional[str] = "Montes Claros, MG, Brazil"
 
 # Location icon in tooltip (default to a standard emoji to avoid missing glyphs)
 LOC_ICON = os.getenv("WEATHER_LOC_ICON", "📍")
