@@ -3,7 +3,10 @@
 # weather info from wttr. https://github.com/chubin/wttr.in
 # Remember to add city 
 
-city=
+city="Montes+Claros"
+CITY="Montes+Claros"
+LANG="pt-br"
+OPTIONS="m&q&T"
 cachedir="$HOME/.cache/rbn"
 cachefile=${0##*/}-$1
 
@@ -22,7 +25,8 @@ IFS=$'\n'
 
 cacheage=$(($(date +%s) - $(stat -c '%Y' "$cachedir/$cachefile")))
 if [ $cacheage -gt 1740 ] || [ ! -s $cachedir/$cachefile ]; then
-    data=($(curl -s https://en.wttr.in/"$city"$1\?0qnT 2>&1))
+    #data=($(curl -s https://en.wttr.in/"$city"$1\?0qnT 2>&1))
+    data=($(curl "wttr.in/${CITY}?${OPTIONS}&lang=${LANG}" 2>&1))
     echo ${data[0]} | cut -f1 -d, > $cachedir/$cachefile
     echo ${data[1]} | sed -E 's/^.{15}//' >> $cachedir/$cachefile
     echo ${data[2]} | sed -E 's/^.{15}//' >> $cachedir/$cachefile
